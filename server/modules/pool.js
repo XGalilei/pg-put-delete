@@ -1,6 +1,8 @@
 const pg = require('pg');
 
 const config = {
+  user: 'postgres', //user and password fields required for running PostgreSQL on Windows
+  password: 'placeholder', //not actual password for security reasons
   database: 'awesome_reads', 
   host: 'localhost', 
   port: 5432, 
