@@ -9,6 +9,8 @@ function addClickHandlers() {
 
   // TODO - Add code for edit & delete buttons
   $('#bookShelf').on('click', '.delete-button', removeBook);
+  $('#bookShelf').on('click', '.edit-read-button', editBookRead);
+
 }
 
 function handleSubmit() {
@@ -59,6 +61,7 @@ function renderBooks(books) {
       <tr>
         <td>${book.title}</td>
         <td>${book.author}</td>
+        <td>${book.isRead}</td>
         <td>
           <button 
             class="delete-button" 
@@ -67,11 +70,19 @@ function renderBooks(books) {
             Delete
           </button>
         </td>
+        <td>
+          <button
+            class="edit-read-button"
+            data-id="${book.id}"
+          >
+          Mark as Read
+        </td>
       </tr>
     `);
   }
 }
 
+// Removes a book from the database
 function removeBook() {
   const bookId = $(this).data('id');
   $.ajax({
@@ -83,5 +94,20 @@ function removeBook() {
   }).catch(function(error) {
     alert('Uh-oh...');
     console.log('Error in DELETE:', error);
+  });
+}
+
+// Marks a book as being read
+function editBookRead() {
+  const bookId = $(this).data('id');
+  $.ajax({
+    method: 'PUT',
+    url: `/books/${bookId}`
+  }).then(function(response) {
+    console.log('Books marked as read');
+    refreshBooks();
+  }).catch(function(error) {
+    alert('Oopsies...');
+    console.log('Error in PUT:', error);
   });
 }
