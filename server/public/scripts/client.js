@@ -7,7 +7,6 @@ $(document).ready(function(){
 function addClickHandlers() {
   $('#submitBtn').on('click', handleSubmit);
 
-  // TODO - Add code for edit & delete buttons
   $('#bookShelf').on('click', '.delete-button', removeBook);
   $('#bookShelf').on('click', '.edit-read-button', editBookRead);
 

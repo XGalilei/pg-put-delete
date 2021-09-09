@@ -34,7 +34,6 @@ router.post('/',  (req, res) => {
     });
 });
 
-// TODO - PUT
 // Updates a book to show that it has been read
 // Request must include a parameter indicating what book to update - the id
 // Request body must include the content to update - the status
